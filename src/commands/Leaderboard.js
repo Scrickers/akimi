@@ -20,7 +20,6 @@ class Leaderboard extends Command {
 
     const list = this.client.points.filter(p => p.guild === message.guild.id);
 
-    // page doing
     let page = parseInt(args[0]) ? parseInt(args[0]) : 1;
     const totalPages = Math.round(list.size / 10);
     if (totalPages === 0)
@@ -40,7 +39,6 @@ class Leaderboard extends Command {
         lbServer.push(us.user);
       });
 
-    // top-10 thing
     list
       .map(p => ({ points: p.points, user: p.user }))
       .sort((a, b) => (b.points > a.points ? 1 : -1))
@@ -75,7 +73,7 @@ class Leaderboard extends Command {
     );
     return message.channel.send(
       `**__${message.guild.name}__**'s Leaderboard (Page **${page +
-        1}** out of **${totalPages || 1}**)\n\`\`\`${leaderboard.join(
+        1}** sur **${totalPages || 1}**)\n\`\`\`${leaderboard.join(
         "\n"
       )}\`\`\``
     );
